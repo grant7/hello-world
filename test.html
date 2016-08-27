@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>iHeartRadio Ad Macro Generation</title>
+  <link rel="shortcut icon" href="//pylon.iheart.com/favicon.ico">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    form > * {
+      display: block;
+    }
+    input, textarea {
+      height: 40px;
+      width: 500px;
+      margin: 10px;
+    }
+
+    textarea {
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <form id="wallpaper">
+    <h2>Wallpaper (3x3, ccrpos 2003)</h2>
+    <input type="text" name="leftImg" placeholder="Left Skyscraper URL, for ex: http://iscale.iheart.com/catalog/live/1469"/>
+    <input type="text" name="rightImg" placeholder="Right Skyscraper URL, for ex: http://iscale.iheart.com/catalog/live/1469"/>
+    <input type="text" name="trackingUrl" placeholder="Tracking Pixel URL, for ex: http://foo.com/1.gif"/>
+    <input type="text" name="backgroundColor" placeholder="Background Color URL, for ex: #120E0A"/>
+    <button>Get the sauce!</button>
+    <textarea class="macro"></textarea>
+  </form>
+
+ 
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+  <script type="text/javascript" src="lib/main.js"></script>
+</body>
+</html>
