@@ -7,21 +7,23 @@
 <script>
 (function() {
   const TRACKER_KEY = 'claritas_click_tracker_fired';
+  console.log("[Claritas Debug] Tracker script running...");
 
-  // Exit if already fired this session
   if (sessionStorage.getItem(TRACKER_KEY)) {
-    console.log("[Claritas Tracker] Skipped – already fired this session.");
+    console.log("[Claritas Debug] Tracker already fired this session.");
     return;
+  } else {
+    console.log("[Claritas Debug] Tracker has not fired yet.");
   }
 
-  // Check for utm_campaign=claritas in URL
   const params = new URLSearchParams(window.location.search);
   const campaign = params.get("utm_campaign");
+  console.log("[Claritas Debug] utm_campaign:", campaign);
 
   if (campaign && campaign.toLowerCase() === "claritas") {
-    const cacheBuster = Math.floor(Math.random() * 1000000000);
+    console.log("[Claritas Debug] Matched 'claritas' campaign — firing pixel.");
 
-    // No redirect needed — this is a passive pixel fire
+    const cacheBuster = Math.floor(Math.random() * 1000000000);
     const trackingUrl = `https://trkn.us/click/process/partner=612;c=21908;p=23258110;idfa=;cid=;ord=${cacheBuster};`;
 
     const img = new Image();
@@ -29,10 +31,9 @@
     document.body.appendChild(img);
 
     sessionStorage.setItem(TRACKER_KEY, 'true');
-
-    console.log("[Claritas Tracker] Fired:", trackingUrl);
+    console.log("[Claritas Debug] sessionStorage key set:", TRACKER_KEY);
   } else {
-    console.log("[Claritas Tracker] UTM campaign not matched.");
+    console.log("[Claritas Debug] No matching UTM campaign found.");
   }
 })();
 </script>
