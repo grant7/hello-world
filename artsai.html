@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+<!--  JavaScript Click tracking code -->
+
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  const TRACKER_KEY = 'claritas_click_tracker_fired';
+  console.log("[Claritas Debug] Tracker script running...");
+
+  // Prevent multiple fires per session
+  if (sessionStorage.getItem(TRACKER_KEY)) {
+    console.log("[Claritas Debug] Already fired this session.");
+    return;
+  }
+
+  // Check for utm_campaign=claritas
+  const params = new URLSearchParams(window.location.search);
+  const campaign = params.get("utm_campaign");
+  console.log("[Claritas Debug] utm_campaign:", campaign);
+
+  if (campaign && campaign.toLowerCase() === "claritas") {
+    console.log("[Claritas Debug] Matched 'claritas' campaign — firing pixel.");
+
+    // Passive image pixel
+    const trackingUrl = "https://arttrk.com/pixel/?ad_log=ua-00049411-91746638790408&tag=fclick&pixid=dd1fda5a-c7d3-4de7-8245-e2316c0fdab9";
+
+    const img = new Image();
+    img.src = trackingUrl;
+
+    // Safe to append now that DOM is ready
+    document.body.appendChild(img);
+
+    sessionStorage.setItem(TRACKER_KEY, 'true');
+    console.log("[Claritas Debug] Pixel fired. sessionStorage set.");
+  } else {
+    console.log("[Claritas Debug] UTM campaign not matched.");
+  }
+});
+</script>
+<!--  JavaScript Click tracking code -->
+
+<!-- grant_advertiser JavaScript Conversion; Goal ID: 'click_tracking' -->
+<script type="text/javascript">var ordnumber = Math.random() * 10000000000000;var sscUrl = ("https:" == document.location.protocol ? "https://" : "http://") + "trkn.us/pixel/conv/ppt=9088;g=click_tracking;gid=64300;ord="+ordnumber+";v=120";var x = document.createElement("IMG");x.setAttribute("src", sscUrl);x.setAttribute("width", "1");x.setAttribute("height", "1");document.body.appendChild(x);</script> 
+
+	  
+	  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9WCZSPMP74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9WCZSPMP74');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta name="author" content="Grant Meiresonne">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grant's Test Site</title>
+    <link rel="stylesheet" href="style.css">
+	  <script>
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+ 'transactionProducts': [{
+ 'sku': 'DD44',
+ 'name': 'T-Shirt',
+ 'category': 'Apparel',
+ 'price': 11.99,
+ 'quantity': 1
+ },{
+ 'sku': 'AA1243544',
+ 'name': 'Socks',
+ 'category': 'Apparel',
+ 'price': 9.99,
+ 'quantity': 2,
+	 'orderid':1234455
+ }]
+});
+</script>
+
+<!-- grant_advertiser JavaScript Conversion; Goal ID: 'click_tracking' -->
+	  
+	  
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KJND68B');</script>
+<!-- End Google Tag Manager -->
+    
+    
+  </head>
+  
+  
+  
+  
+  
+  <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJND68B"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    This is my test site.
+	  
+	  <p>
+		 <p>
+	  <button type="button" id="btn">Click Here!</button>
+			 
+			 
+			 <form action="/action_page.php">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <input type="submit" value="BIG SUBMIT">
+</form> 
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+    
+    
+	<script src="index.js"></script>
+
+	  <script>
+window.embeddedChatbotConfig = {
+chatbotId: "G8gzwuZ9-b5VjkGUUrmtr",
+domain: "www.chatbase.co"
+}
+</script>
+<script
+src="https://www.chatbase.co/embed.min.js"
+chatbotId="G8gzwuZ9-b5VjkGUUrmtr"
+domain="www.chatbase.co"
+defer>
+</script>
+  </body>
+</html>
