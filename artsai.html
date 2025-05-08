@@ -9,13 +9,11 @@ window.addEventListener('DOMContentLoaded', function() {
   const TRACKER_KEY = 'claritas_click_tracker_fired';
   console.log("[Claritas Debug] Tracker script running...");
 
-  // Prevent multiple fires per session
   if (sessionStorage.getItem(TRACKER_KEY)) {
     console.log("[Claritas Debug] Already fired this session.");
     return;
   }
 
-  // Check for utm_campaign=claritas
   const params = new URLSearchParams(window.location.search);
   const campaign = params.get("utm_campaign");
   console.log("[Claritas Debug] utm_campaign:", campaign);
@@ -23,13 +21,11 @@ window.addEventListener('DOMContentLoaded', function() {
   if (campaign && campaign.toLowerCase() === "claritas") {
     console.log("[Claritas Debug] Matched 'claritas' campaign — firing pixel.");
 
-    // Passive image pixel
-    const trackingUrl = "https://arttrk.com/pixel/?ad_log=ua-00049411-91746638790408&tag=fclick&pixid=dd1fda5a-c7d3-4de7-8245-e2316c0fdab9";
+    const cacheBuster = Math.floor(Math.random() * 1000000000);
+    const trackingUrl = `https://arttrk.com/pixel/?ad_log=ua-00049411-91746638790408&tag=fclick&pixid=dd1fda5a-c7d3-4de7-8245-e2316c0fdab9&rnd=${cacheBuster}`;
 
     const img = new Image();
     img.src = trackingUrl;
-
-    // Safe to append now that DOM is ready
     document.body.appendChild(img);
 
     sessionStorage.setItem(TRACKER_KEY, 'true');
