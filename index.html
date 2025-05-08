@@ -14,29 +14,22 @@
     return;
   }
 
-  // Parse UTM campaign
+  // Check for utm_campaign=claritas in URL
   const params = new URLSearchParams(window.location.search);
   const campaign = params.get("utm_campaign");
 
-  // Match UTM
   if (campaign && campaign.toLowerCase() === "claritas") {
     const cacheBuster = Math.floor(Math.random() * 1000000000);
 
-    // Encode landing page URL
-    const redirectUrl = encodeURIComponent("https://grant7.github.io/hello-world/");
+    // No redirect needed — this is a passive pixel fire
+    const trackingUrl = `https://trkn.us/click/process/partner=612;c=21908;p=23258110;idfa=;cid=;ord=${cacheBuster};`;
 
-    // Construct full tracking URL
-    const trackingUrl = `https://trkn.us/click/process/partner=612;c=21908;p=23258110;idfa=;cid=;ord=${cacheBuster};redirect=${redirectUrl}`;
-
-    // Fire tracking pixel
     const img = new Image();
     img.src = trackingUrl;
     document.body.appendChild(img);
 
-    // Set session flag
     sessionStorage.setItem(TRACKER_KEY, 'true');
 
-    // Log for debugging
     console.log("[Claritas Tracker] Fired:", trackingUrl);
   } else {
     console.log("[Claritas Tracker] UTM campaign not matched.");
