@@ -4,36 +4,33 @@
 
 <!--  JavaScript Click tracking code -->
 
-<script>
 (function() {
   const TRACKER_KEY = 'claritas_click_tracker_fired';
 
-  // Exit if already fired this session
-  if (sessionStorage.getItem(TRACKER_KEY)) return;
+  if (sessionStorage.getItem(TRACKER_KEY)) {
+    console.log("[Claritas Tracker] Skipped – already fired this session.");
+    return;
+  }
 
-  // Parse UTM campaign
   const params = new URLSearchParams(window.location.search);
   const campaign = params.get("utm_campaign");
 
-  // Match UTM
   if (campaign && campaign.toLowerCase() === "claritas") {
-    // Replace {random} with a true cachebuster
     const cacheBuster = Math.floor(Math.random() * 1000000000);
-    const trackingUrl = `https://trkn.us/click/process/partner=612;c=21908;p=23258110;idfa=;cid=;ord=${cacheBuster};redirect=`;
+    const redirectUrl = encodeURIComponent("https://clientsite.com/landing-page");
+    const trackingUrl = `https://trkn.us/click/process/partner=612;c=21908;p=23258110;idfa=;cid=;ord=${cacheBuster};redirect=${redirectUrl}`;
 
-    // Fire tracking pixel
     const img = new Image();
     img.src = trackingUrl;
     document.body.appendChild(img);
 
-    // Mark tracker as fired
     sessionStorage.setItem(TRACKER_KEY, 'true');
 
-    // Debug log
     console.log("[Claritas Tracker] Fired:", trackingUrl);
+  } else {
+    console.log("[Claritas Tracker] UTM campaign not matched.");
   }
 })();
-</script>
 <!--  JavaScript Click tracking code -->
 
 <!-- grant_advertiser JavaScript Conversion; Goal ID: 'click_tracking' -->
